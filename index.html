@@ -9,7 +9,7 @@
   <style>
     @font-face {
       font-family: 'SamsungOne';
-      src: local('SamsungOne'), url('https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfBBc4.woff2') format('woff2');
+      src: local('SamsungOne');
       font-weight: normal;
     }
 
@@ -93,7 +93,7 @@
 <body>
   <div class="container" id="step1">
     <h1 class="samsung-title">Welcome to EnfrokUI</h1>
-    <p>Please click continue to begin the setup.</p>
+    <p>Please click continue to begin setup.</p>
     <button onclick="nextStep('step1', 'step2')">CONTINUE</button>
   </div>
 
@@ -101,8 +101,8 @@
     <h1>Setup your EnfrokUI</h1>
     <p>Please enter some of your details to continue. After details you would be redirected to Warning page.</p>
     <div id="error" class="error">Please write your details</div>
-    <input id="name" type="text" placeholder="Name">
-    <input id="password" type="password" placeholder="Set password...">
+    <input id="name" type="text" placeholder="Name" required>
+    <input id="password" type="password" placeholder="Set password..." required>
     <input id="hint" type="text" placeholder="Hint (optional)">
     <button onclick="validateSetup()">CONTINUE</button>
   </div>
@@ -112,7 +112,7 @@
     <p>1. Professional websites are blocked by them.<br>
        2. Kindly report disadvantages if found.<br>
        3. Settings is getting its update soon.</p>
-    <button onclick="location.href='apps.html'">CONTINUE</button>
+    <button onclick="window.location.href='apps.html'">CONTINUE</button>
   </div>
 
   <script>
