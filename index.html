@@ -1,0 +1,93 @@
+<!-- Arya OS - Samsung Style Lite Mockup (HTML GUI version for simulation/testing) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arya OS</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'SamsungOne', sans-serif;
+      background-image: url('https://i.imgur.com/OVw3Ykm.jpg'); /* Samsung-style wallpaper */
+      background-size: cover;
+      background-position: center;
+      color: white;
+      overflow: hidden;
+    }
+
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 20px;
+      background: rgba(0, 0, 0, 0.4);
+      font-size: 14px;
+    }
+
+    .home {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: calc(100vh - 40px);
+      padding-top: 40px;
+      gap: 30px;
+    }
+
+    .app-icon {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-size: 12px;
+      text-align: center;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+    }
+
+    .app-icon:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      gap: 30px;
+    }
+
+    .icon-img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="status-bar">
+    <div>📶 LTE  |  🔋 100%</div>
+    <div>Arya OS</div>
+  </div>
+
+  <div class="home">
+    <div class="app-grid">
+      <div class="app-icon" onclick="alert('Opening Settings')">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/settings.png" class="icon-img" alt="Settings">
+        Settings
+      </div>
+      <div class="app-icon" onclick="alert('Opening Browser')">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/internet--v1.png" class="icon-img" alt="Browser">
+        Browser
+      </div>
+      <div class="app-icon" onclick="alert('Opening Calculator')">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/calculator.png" class="icon-img" alt="Calculator">
+        Calculator
+      </div>
+    </div>
+  </div>
+</body>
+</html>
