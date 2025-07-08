@@ -1,19 +1,68 @@
-<!-- Arya OS V2 - apps.html launcher -->
+<!-- Arya OS V2 - apps.html with setup screen -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EnfrokUI - Launcher</title>
+  <title>Arya OS - Launcher</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       padding: 0;
       font-family: 'Roboto', sans-serif;
-      background: url('https://images.unsplash.com/photo-1611078489935-0cb964bbaa3f?auto=format&fit=crop&w=1080&q=80') no-repeat center center fixed;
-      background-size: cover;
+      background: linear-gradient(to bottom right, #1e1e1e, #3a3a3a);
       color: white;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .box {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 400px;
+      animation: fadein 0.6s ease;
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: none;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      background-color: #00bcd4;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0199a2;
+    }
+
+    .error {
+      color: red;
+      margin-bottom: 10px;
     }
 
     .status-bar {
@@ -45,6 +94,7 @@
       text-align: center;
       cursor: pointer;
       backdrop-filter: blur(4px);
+      transition: background 0.3s ease;
     }
 
     .app:hover {
@@ -62,7 +112,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(0, 0, 0, 0.9);
+      background: #2c2c2c;
       border: 2px solid #00bcd4;
       padding: 20px;
       border-radius: 15px;
@@ -70,66 +120,80 @@
       z-index: 10;
       width: 90%;
       max-width: 400px;
+      animation: fadein 0.5s ease;
     }
 
-    iframe {
-      width: 100%;
-      height: 300px;
-      border: none;
-    }
-
-    input[type='button'] {
-      margin-top: 15px;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 8px;
-      background: #00bcd4;
-      color: white;
-      cursor: pointer;
-    }
-
-    .close-btn {
-      float: right;
-      cursor: pointer;
+    @keyframes fadein {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 </head>
 <body>
-  <div class="status-bar">
-    <div>🔺 THUNDER DEVER</div>
-    <div>EnfrokUI</div>
-  </div>
-
-  <div class="app-grid">
-    <div class="app" onclick="openApp('settingsWindow')">
-      <div class="icon">⚙️</div>
-      Settings
-    </div>
-    <div class="app" onclick="openApp('browserWindow')">
-      <div class="icon">🌐</div>
-      Browser
-    </div>
-    <div class="app" onclick="openApp('calcWindow')">
-      <div class="icon">🧮</div>
-      Calculator
+  <div id="setup" class="container">
+    <div class="box">
+      <h1>Welcome to EnfrokUI</h1>
+      <p>Please click continue to begin setup.</p>
+      <button onclick="showDetails()">CONTINUE</button>
     </div>
   </div>
 
-  <!-- Browser -->
+  <div id="details" class="container hidden">
+    <div class="box">
+      <h2>Setup your EnfrokUI</h2>
+      <p>Please enter your details to continue.</p>
+      <div id="error" class="error hidden">Please write your details</div>
+      <input id="name" type="text" placeholder="Name">
+      <input id="pass" type="password" placeholder="Set password...">
+      <input id="hint" type="text" placeholder="Hint (optional)">
+      <button onclick="validateAndContinue()">CONTINUE</button>
+    </div>
+  </div>
+
+  <div id="warning" class="container hidden">
+    <div class="box">
+      <h2>Take Care</h2>
+      <p>1. Professional websites are blocked by them.<br>
+         2. Kindly report disadvantages if found.<br>
+         3. Settings is getting its update soon.</p>
+      <button onclick="finishSetup()">CONTINUE</button>
+    </div>
+  </div>
+
+  <div id="mainUI" class="hidden">
+    <div class="status-bar">
+      <div>📶 LTE</div>
+      <div>🔋 100%</div>
+    </div>
+
+    <div class="app-grid">
+      <div class="app" onclick="openApp('settingsWindow')">
+        <div class="icon">⚙️</div>
+        Settings
+      </div>
+      <div class="app" onclick="openApp('browserWindow')">
+        <div class="icon">🌐</div>
+        Browser
+      </div>
+      <div class="app" onclick="openApp('calcWindow')">
+        <div class="icon">🧮</div>
+        Calculator
+      </div>
+    </div>
+  </div>
+
   <div id="browserWindow">
     <div class="close-btn" onclick="closeApp('browserWindow')">❌</div>
     <h3>Browser</h3>
     <iframe src="https://duckduckgo.com"></iframe>
   </div>
 
-  <!-- Settings -->
   <div id="settingsWindow">
     <div class="close-btn" onclick="closeApp('settingsWindow')">❌</div>
     <h3>Settings</h3>
     <p>We're unable to open Settings.</p>
   </div>
 
-  <!-- Calculator -->
   <div id="calcWindow">
     <div class="close-btn" onclick="closeApp('calcWindow')">❌</div>
     <h3>Calculator</h3>
@@ -161,6 +225,30 @@
   </div>
 
   <script>
+    function showDetails() {
+      document.getElementById('setup').classList.add('hidden');
+      document.getElementById('details').classList.remove('hidden');
+    }
+
+    function validateAndContinue() {
+      const name = document.getElementById('name').value.trim();
+      const pass = document.getElementById('pass').value.trim();
+      const error = document.getElementById('error');
+
+      if (!name || !pass) {
+        error.classList.remove('hidden');
+        return;
+      }
+      error.classList.add('hidden');
+      document.getElementById('details').classList.add('hidden');
+      document.getElementById('warning').classList.remove('hidden');
+    }
+
+    function finishSetup() {
+      document.getElementById('warning').classList.add('hidden');
+      document.getElementById('mainUI').classList.remove('hidden');
+    }
+
     function openApp(id) {
       document.getElementById(id).style.display = 'block';
     }
