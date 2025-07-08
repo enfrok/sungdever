@@ -1,277 +1,275 @@
-<!-- Arya OS V2 - apps.html with setup screen -->
+<!-- Arya OS V2 - apps.html with setup, login, and lock screen -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EnfrokUI</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(to bottom right, #1e1e1e, #3a3a3a);
-      color: white;
-    }
-
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .box {
-      background: rgba(0, 0, 0, 0.6);
-      padding: 20px;
-      border-radius: 12px;
-      width: 90%;
-      max-width: 400px;
-      animation: fadein 0.6s ease;
-    }
-
-    input[type="text"], input[type="password"] {
-      width: 90%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 8px;
-      border: none;
-    }
-
-    button {
-      padding: 10px 20px;
-      margin-top: 10px;
-      background-color: #00bcd4;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #0199a2;
-    }
-
-    .error {
-      color: red;
-      margin-bottom: 10px;
-    }
-
-    .status-bar {
-      display: flex;
-      justify-content: space-between;
-      padding: 10px 20px;
-      background: rgba(0, 0, 0, 0.4);
-      font-size: 14px;
-    }
-
-    .app-grid {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      padding: 50px 20px;
-    }
-
-    .app {
-      width: 90px;
-      height: 90px;
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      text-align: center;
-      cursor: pointer;
-      backdrop-filter: blur(4px);
-      transition: background 0.3s ease;
-    }
-
-    .app:hover {
-      background: rgba(255, 255, 255, 0.25);
-    }
-
-    .icon {
-      font-size: 24px;
-      margin-bottom: 5px;
-    }
-
-    #browserWindow, #calcWindow, #settingsWindow {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #2c2c2c;
-      border: 2px solid #00bcd4;
-      padding: 20px;
-      border-radius: 15px;
-      color: white;
-      z-index: 10;
-      width: 90%;
-      max-width: 400px;
-      animation: fadein 0.5s ease;
-    }
-
-    @keyframes fadein {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EnfrokUI</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to bottom right, #1e1e1e, #3a3a3a);
+    color: white;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+    text-align: center;
+  }
+  .hidden { display: none; }
+  .box {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    animation: fadein 0.6s ease;
+  }
+  input[type="text"], input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: none;
+  }
+  button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #00bcd4;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  button:hover { background-color: #0199a2; }
+  .error { color: red; margin-bottom: 10px; }
+  .status-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.4);
+    font-size: 14px;
+  }
+  .app-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 50px 20px;
+  }
+  .app {
+    width: 90px;
+    height: 90px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: background 0.3s ease;
+  }
+  .app:hover { background: rgba(255, 255, 255, 0.25); }
+  .icon { font-size: 24px; margin-bottom: 5px; }
+  #browserWindow, #calcWindow, #settingsWindow {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #2c2c2c;
+    border: 2px solid #00bcd4;
+    padding: 20px;
+    border-radius: 15px;
+    color: white;
+    z-index: 10;
+    width: 90%;
+    max-width: 400px;
+    animation: fadein 0.5s ease;
+  }
+  @keyframes fadein {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+</style>
 </head>
 <body>
-  <div id="setup" class="container">
-    <div class="box">
-      <h1>Welcome to EnfrokUI</h1>
-      <p>Please click continue to begin setup.</p>
-      <button onclick="showDetails()">CONTINUE</button>
+<div id="setup" class="container">
+  <div class="box">
+    <h1>Welcome to EnfrokUI</h1>
+    <p>Please click continue to begin setup.</p>
+    <button onclick="showDetails()">CONTINUE</button>
+  </div>
+</div>
+
+<div id="details" class="container hidden">
+  <div class="box">
+    <h2>Setup your EnfrokUI</h2>
+    <p>Please enter your details to continue.</p>
+    <div id="error" class="error hidden">Please write your details</div>
+    <input id="name" type="text" placeholder="Name">
+    <input id="pass" type="password" placeholder="Set password...">
+    <input id="hint" type="text" placeholder="Hint (optional)">
+    <button onclick="validateAndContinue()">CONTINUE</button>
+  </div>
+</div>
+
+<div id="warning" class="container hidden">
+  <div class="box">
+    <h2>Notice</h2>
+    <p>1. Professional websites are blocked by them.<br>
+       2. Kindly report disadvantages if found.<br>
+       3. Settings is getting its update soon.</p>
+    <button onclick="finishSetup()">CONTINUE</button>
+  </div>
+</div>
+
+<div id="login" class="container hidden">
+  <div class="box">
+    <h2 id="loginTitle">Welcome back</h2>
+    <p>Please enter your password to continue</p>
+    <input id="loginPass" type="password" placeholder="Password">
+    <div id="loginError" class="error hidden">Incorrect password!</div>
+    <button onclick="loginNow()">CONTINUE</button>
+  </div>
+</div>
+
+<div id="mainUI" class="hidden">
+  <div class="status-bar">
+    <div>THUNDER DEVER</div>
+    <div>Enfrok%</div>
+    <div onclick="lockOS()" style="cursor:pointer;">🔒</div>
+  </div>
+  <div class="app-grid">
+    <div class="app" onclick="openApp('settingsWindow')">
+      <div class="icon">⚙️</div>
+      Settings
+    </div>
+    <div class="app" onclick="openApp('browserWindow')">
+      <div class="icon">🌐</div>
+      Browser
+    </div>
+    <div class="app" onclick="openApp('calcWindow')">
+      <div class="icon">🧮</div>
+      Calculator
     </div>
   </div>
+</div>
 
-  <div id="details" class="container hidden">
-    <div class="box">
-      <h2>Setup your EnfrokUI</h2>
-      <p>Please enter your details to continue.</p>
-      <div id="error" class="error hidden">Please write your details</div>
-      <input id="name" type="text" placeholder="Name">
-      <input id="pass" type="password" placeholder="Set password...">
-      <input id="hint" type="text" placeholder="Hint (optional)">
-      <button onclick="validateAndContinue()">CONTINUE</button>
-    </div>
+<div id="browserWindow">
+  <div class="close-btn" onclick="closeApp('browserWindow')">❌</div>
+  <h3>Browser</h3>
+  <iframe src="https://duckduckgo.com"></iframe>
+</div>
+<div id="settingsWindow">
+  <div class="close-btn" onclick="closeApp('settingsWindow')">❌</div>
+  <h3>Settings</h3>
+  <p>We're unable to open Settings.</p>
+</div>
+<div id="calcWindow">
+  <div class="close-btn" onclick="closeApp('calcWindow')">❌</div>
+  <h3>Calculator</h3>
+  <input type="text" id="display" readonly style="width: 100%; padding: 10px; font-size: 20px; margin-bottom: 10px;">
+  <div>
+    <input type="button" value="1" onclick="append('1')">
+    <input type="button" value="2" onclick="append('2')">
+    <input type="button" value="3" onclick="append('3')">
+    <input type="button" value="+" onclick="append('+')">
   </div>
-
-  <div id="warning" class="container hidden">
-    <div class="box">
-      <h2>Take Care</h2>
-      <p>1. Professional websites are blocked by them.<br>
-         2. Kindly report disadvantages if found.<br>
-         3. Settings is getting its update soon.</p>
-      <button onclick="finishSetup()">CONTINUE</button>
-    </div>
+  <div>
+    <input type="button" value="4" onclick="append('4')">
+    <input type="button" value="5" onclick="append('5')">
+    <input type="button" value="6" onclick="append('6')">
+    <input type="button" value="-" onclick="append('-')">
   </div>
-
-  <div id="mainUI" class="hidden">
-    <div class="status-bar">
-      <div>🔺 THUNDER DEVER</div>
-      <div>EnfrokUI</div>
-    </div>
-
-    <div class="app-grid">
-      <div class="app" onclick="openApp('settingsWindow')">
-        <div class="icon">⚙️</div>
-        Settings
-      </div>
-      <div class="app" onclick="openApp('browserWindow')">
-        <div class="icon">🌐</div>
-        Browser
-      </div>
-      <div class="app" onclick="openApp('calcWindow')">
-        <div class="icon">🧮</div>
-        Calculator
-      </div>
-    </div>
+  <div>
+    <input type="button" value="7" onclick="append('7')">
+    <input type="button" value="8" onclick="append('8')">
+    <input type="button" value="9" onclick="append('9')">
+    <input type="button" value="*" onclick="append('*')">
   </div>
-
-  <div id="browserWindow">
-    <div class="close-btn" onclick="closeApp('browserWindow')">❌</div>
-    <h3>Browser</h3>
-    <iframe src="https://duckduckgo.com"></iframe>
+  <div>
+    <input type="button" value="C" onclick="clearDisplay()">
+    <input type="button" value="0" onclick="append('0')">
+    <input type="button" value="=" onclick="calculate()">
+    <input type="button" value="/" onclick="append('/')">
   </div>
+</div>
+<script>
+  let storedName = "";
+  let storedPass = "";
 
-  <div id="settingsWindow">
-    <div class="close-btn" onclick="closeApp('settingsWindow')">❌</div>
-    <h3>Settings</h3>
-    <p>We're unable to open Settings.</p>
-  </div>
+  function showDetails() {
+    document.getElementById('setup').classList.add('hidden');
+    document.getElementById('details').classList.remove('hidden');
+  }
 
-  <div id="calcWindow">
-    <div class="close-btn" onclick="closeApp('calcWindow')">❌</div>
-    <h3>Calculator</h3>
-    <input type="text" id="display" readonly style="width: 100%; padding: 10px; font-size: 20px; margin-bottom: 10px;">
-    <div>
-      <input type="button" value="1" onclick="append('1')">
-      <input type="button" value="2" onclick="append('2')">
-      <input type="button" value="3" onclick="append('3')">
-      <input type="button" value="+" onclick="append('+')">
-    </div>
-    <div>
-      <input type="button" value="4" onclick="append('4')">
-      <input type="button" value="5" onclick="append('5')">
-      <input type="button" value="6" onclick="append('6')">
-      <input type="button" value="-" onclick="append('-')">
-    </div>
-    <div>
-      <input type="button" value="7" onclick="append('7')">
-      <input type="button" value="8" onclick="append('8')">
-      <input type="button" value="9" onclick="append('9')">
-      <input type="button" value="*" onclick="append('*')">
-    </div>
-    <div>
-      <input type="button" value="C" onclick="clearDisplay()">
-      <input type="button" value="0" onclick="append('0')">
-      <input type="button" value="=" onclick="calculate()">
-      <input type="button" value="/" onclick="append('/')">
-    </div>
-  </div>
-
-  <script>
-    function showDetails() {
-      document.getElementById('setup').classList.add('hidden');
-      document.getElementById('details').classList.remove('hidden');
+  function validateAndContinue() {
+    const name = document.getElementById('name').value.trim();
+    const pass = document.getElementById('pass').value.trim();
+    const error = document.getElementById('error');
+    if (!name || !pass) {
+      error.classList.remove('hidden');
+      return;
     }
+    storedName = name;
+    storedPass = pass;
+    error.classList.add('hidden');
+    document.getElementById('details').classList.add('hidden');
+    document.getElementById('warning').classList.remove('hidden');
+  }
 
-    function validateAndContinue() {
-      const name = document.getElementById('name').value.trim();
-      const pass = document.getElementById('pass').value.trim();
-      const error = document.getElementById('error');
+  function finishSetup() {
+    document.getElementById('warning').classList.add('hidden');
+    document.getElementById('mainUI').classList.remove('hidden');
+  }
 
-      if (!name || !pass) {
-        error.classList.remove('hidden');
-        return;
-      }
-      error.classList.add('hidden');
-      document.getElementById('details').classList.add('hidden');
-      document.getElementById('warning').classList.remove('hidden');
-    }
+  function lockOS() {
+    document.getElementById('mainUI').classList.add('hidden');
+    document.getElementById('login').classList.remove('hidden');
+    document.getElementById('loginTitle').innerText = storedName;
+  }
 
-    function finishSetup() {
-      document.getElementById('warning').classList.add('hidden');
+  function loginNow() {
+    const input = document.getElementById('loginPass').value;
+    if (input === storedPass) {
+      document.getElementById('login').classList.add('hidden');
       document.getElementById('mainUI').classList.remove('hidden');
+      document.getElementById('loginError').classList.add('hidden');
+    } else {
+      document.getElementById('loginError').classList.remove('hidden');
     }
+  }
 
-    function openApp(id) {
-      document.getElementById(id).style.display = 'block';
+  function openApp(id) {
+    document.getElementById(id).style.display = 'block';
+  }
+  function closeApp(id) {
+    document.getElementById(id).style.display = 'none';
+  }
+  function append(val) {
+    document.getElementById('display').value += val;
+  }
+  function clearDisplay() {
+    document.getElementById('display').value = '';
+  }
+  function calculate() {
+    try {
+      document.getElementById('display').value = eval(document.getElementById('display').value);
+    } catch {
+      document.getElementById('display').value = 'Error';
     }
-
-    function closeApp(id) {
-      document.getElementById(id).style.display = 'none';
-    }
-
-    function append(val) {
-      document.getElementById('display').value += val;
-    }
-
-    function clearDisplay() {
-      document.getElementById('display').value = '';
-    }
-
-    function calculate() {
-      try {
-        document.getElementById('display').value = eval(document.getElementById('display').value);
-      } catch {
-        document.getElementById('display').value = 'Error';
-      }
-    }
-  </script>
+  }
+</script>
 </body>
 </html>
