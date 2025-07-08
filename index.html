@@ -1,94 +1,108 @@
-<!-- Arya OS - Samsung Style Lite Mockup (HTML GUI version for simulation/testing) -->
+<!-- EnfrokUI Setup Page - Arya OS V2 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arya OS</title>
+  <title>EnfrokUI Setup</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: 'SamsungOne', sans-serif;
-     body {
-  background-image: url('https://images.unsplash.com/photo-1581291519195-ef11498d1cf5?auto=format&fit=crop&w=1080&q=80');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-
-    .status-bar {
+      font-family: 'Roboto', sans-serif;
+      background: url('https://images.unsplash.com/photo-1611078489935-0cb964bbaa3f?auto=format&fit=crop&w=1080&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
       display: flex;
-      justify-content: space-between;
-      padding: 10px 20px;
-      background: rgba(0, 0, 0, 0.4);
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      animation: fadein 1s ease-in-out;
+    }
+
+    @keyframes fadein {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      font-family: 'SamsungOne', 'Roboto', sans-serif;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 14px;
+      font-family: 'Roboto', sans-serif;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      margin-bottom: 15px;
       font-size: 14px;
     }
 
-    .home {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: calc(100vh - 40px);
-      padding-top: 40px;
-      gap: 30px;
-    }
-
-    .app-icon {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 24px;
-      width: 80px;
-      height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      font-size: 12px;
-      text-align: center;
+    button {
+      padding: 10px 20px;
+      background-color: #00bcd4;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
       cursor: pointer;
-      backdrop-filter: blur(4px);
+      transition: background-color 0.3s ease;
     }
 
-    .app-icon:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-
-    .app-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 100px);
-      gap: 30px;
-    }
-
-    .icon-img {
-      width: 40px;
-      height: 40px;
-      margin-bottom: 8px;
+    button:hover {
+      background-color: #0199a2;
     }
   </style>
 </head>
 <body>
-  <div class="status-bar">
-    <div>📶 LTE  |  🔋 69%%%%%%%%%gjoer'pojgrop</div>
-    <div>Arya OS</div>
+  <div class="container" id="step1">
+    <h1>Welcome to EnfrokUI</h1>
+    <p>Please click continue to begin setup.</p>
+    <button onclick="nextStep('step1', 'step2')">CONTINUE</button>
   </div>
 
-  <div class="home">
-    <div class="app-grid">
-      <div class="app-icon" onclick="alert('Opening Settings')">
-        <img src="https://img.icons8.com/ios-filled/50/ffffff/settings.png" class="icon-img" alt="Settings">
-        Settings
-      </div>
-      <div class="app-icon" onclick="alert('Opening Browser')">
-        <img src="https://img.icons8.com/ios-filled/50/ffffff/internet--v1.png" class="icon-img" alt="Browser">
-        Browser
-      </div>
-      <div class="app-icon" onclick="alert('Opening Calculator')">
-        <img src="https://img.icons8.com/ios-filled/50/ffffff/calculator.png" class="icon-img" alt="Calculator">
-        Calculator
-      </div>
-    </div>
+  <div class="container" id="step2" style="display:none">
+    <h1>Setup your EnfrokUI</h1>
+    <p>Please enter some of your details to continue. After details you would be redirected to Warning page.</p>
+    <input type="text" placeholder="Name">
+    <input type="password" placeholder="Set password...">
+    <input type="text" placeholder="Hint (optional)">
+    <button onclick="nextStep('step2', 'warning')">CONTINUE</button>
   </div>
+
+  <div class="container" id="warning" style="display:none">
+    <h1>Take Care</h1>
+    <p>1. Professional websites are blocked by them.<br>
+       2. Kindly report disadvantages if found.<br>
+       3. Settings is getting its update soon.</p>
+    <button onclick="location.href='launcher.html'">CONTINUE</button>
+  </div>
+
+  <script>
+    function nextStep(current, next) {
+      document.getElementById(current).style.display = 'none';
+      document.getElementById(next).style.display = 'block';
+    }
+  </script>
 </body>
 </html>
